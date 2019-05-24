@@ -1,14 +1,14 @@
 version: "3.3"
 services:
     frontend:
-        image: noteme-front
+        image: g3t0r/noteme-front:v1
         # network_mode: host
         ports:
             - 80:80
         # networks:
         #     - mynet
     backend:
-        image: noteme:latest
+        image: g3t0r/noteme:v1
         # network_mode: host
         ports:
             - 8080:8080
