@@ -1,0 +1,36 @@
+version: "3"
+services:
+    frontend:
+        image: noteme-front
+        ports:
+            - 80:80
+        networks:
+            - webnet
+
+    backend:
+        image: noteme:latest
+        ports:
+            - 8080:8080
+        networks:
+            - webnet
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+    db:
+        image: postgres
+        ports:
+            - 8081:5432
+        networks:
+            - webnet
+        deploy:
+            replicas: 2
+            restart_policy:
+                condition: on-failure
+        environment:
+            - POSTGRES_USER=example
+            - POSTGRES_PASSWORD=example
+            - POSTGRES_DB=noteme
+
+networks:
+    webnet:
